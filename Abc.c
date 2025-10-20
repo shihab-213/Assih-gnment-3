@@ -7,48 +7,51 @@ int main() {
         {30, 40, 50}
     };
 
-    char names[3][10] = {"Ali", "Bob", "Cat"};
-    int i, j, sum;
-    float avg;
-    int max = 0, topperIndex = 0;
+    char studentNames[3][10] = {"Ali", "Bob", "Cat"};
+    
+    int studentIndex, subjectIndex;
+    int totalMarks; 
+    float averageMarks;
+    int highestTotal = 0, topperIndex = 0;
 
-   
-    for (i = 0; i < 3; i++) {
-        sum = 0;
-        for (j = 0; j < 3; j++) {
-            sum += marks[i][j];
+    for (studentIndex = 0; studentIndex < 3; studentIndex++) {
+        totalMarks = 0;
+
+        for (subjectIndex = 0; subjectIndex < 3; subjectIndex++) {
+            totalMarks += marks[studentIndex][subjectIndex];
         }
 
-        avg = sum / 3.0;
+        averageMarks = totalMarks / 3.0;
 
-        // Print based on grade
-        if (avg >= 80) {
-            printf("%s Grade A avg = %.2f\n", names[i], avg);
-        } 
-        else if (avg >= 60) {
-            printf("%s Grade B avg = %.2f\n", names[i], avg);
-        } 
-        else if (avg >= 40) {
-            printf("%s Grade C avg = %.2f\n", names[i], avg);
-        } 
+        if (averageMarks >= 80) {
+            printf("%s - Grade A | Average = %.2f\n", studentNames[studentIndex], averageMarks);
+        }
+        else if (averageMarks >= 60) {
+            printf("%s - Grade B | Average = %.2f\n", studentNames[studentIndex], averageMarks);
+        }
+        else if (averageMarks >= 40) {
+            printf("%s - Grade C | Average = %.2f\n", studentNames[studentIndex], averageMarks);
+        }
         else {
-            printf("%s Fail avg = %.2f\n", names[i], avg);
+            printf("%s - Fail | Average = %.2f\n", studentNames[studentIndex], averageMarks);
         }
     }
 
     
-    for (i = 0; i < 3; i++) {
-        sum = 0;
-        for (j = 0; j < 3; j++) {
-            sum += marks[i][j];
+    for (studentIndex = 0; studentIndex < 3; studentIndex++) {
+        totalMarks = 0;
+
+        for (subjectIndex = 0; subjectIndex < 3; subjectIndex++) {
+            totalMarks += marks[studentIndex][subjectIndex];
         }
-        if (sum > max) {
-            max = sum;
-            topperIndex = i;
+
+        if (totalMarks > highestTotal) {
+            highestTotal = totalMarks;
+            topperIndex = studentIndex;
         }
     }
 
-    printf("Topper: %s with total %d\n", names[topperIndex], max);
+    printf("\nTopper: %s with total marks = %d\n", studentNames[topperIndex], highestTotal);
 
     return 0;
 }
